@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { fetchPhotos,fetchVideo } from "../api/mediaApi";
 import { setQuery,setError,setResults,setActiveTab,setLoading } from "../redux/features/searchSlice";
 import { useDispatch, useSelector } from 'react-redux';
+import ResultCard from './ResultCard';
 
 const ResultGrid = () => {
     const dispatch = useDispatch();
@@ -41,7 +42,7 @@ const ResultGrid = () => {
             }           
         }
         getData();
-    },[activeTab,query]);
+    },[activeTab,query,dispatch]);
     if(error){
         return <h1>Error</h1>
     }
@@ -49,9 +50,11 @@ const ResultGrid = () => {
         return <h1>Loading...</h1>
     }
   return (
-    <div>
-        {results.map((ele,idx)=>{
-            return <h1 key={idx}>{ele.title}</h1>
+    <div className='h-[80%] w-full flex flex-wrap justify-between gap-6 overflow-auto px-10 py-2'>
+        {results.map((item,idx)=>{
+            return <div key={idx}>
+                <ResultCard item={item} />
+            </div>
         })}
     </div>
   )
