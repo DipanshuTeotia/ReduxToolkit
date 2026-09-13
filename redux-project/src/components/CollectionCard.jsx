@@ -3,14 +3,14 @@ import { useDispatch } from 'react-redux'
 import { removeCollection, removeToast } from '../redux/features/collectionSlice';
 
 const CollectionCard = ({item}) => {
-    console.log(item.id);
+    // console.log(item.id);
   const dispatch=useDispatch();
   const removeFromCollection=(item)=>{
     dispatch(removeCollection(item.id));
     dispatch(removeToast());
   }
   return (
-      <div className='h-80 w-[20vw] bg-white rounded-xl relative overflow-hidden'>
+      <div className='h-60 w-[20vw] bg-white rounded-xl relative overflow-hidden'>
 
           <a target='_blank' className='h-full' href={item.src}>
               {item.type == 'photo' ? <img className='h-full w-full object-cover rounded-xl' src={item.src} alt="" /> : ''}
